@@ -15,22 +15,29 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
      'female', 'male', 'male']
 
-test = X[0]
-ans = Y[0]
+tally = []
 
-del X[0]
-del Y[0]
+xNew = []
+yNew = []
 
-print(len(X), len(Y))
+#for i in range(0,9):
+
+for i in range(len(X)):
+    test = [X[i]]
+    ans = Y[i]
+    xNew = list(X)
+    yNew = list(Y)
+    del xNew[i]
+    del yNew[i]
+    clf = clf.fit(xNew, yNew)
+    prediction = clf.predict(test)
+    value = int(prediction == ans)
+    tally.append(value)
+    #print(xNew, '\n', yNew, '\n', prediction)
 
 
-print(test, ans)
+print(tally)
+x = sum(tally)/len(X)
+print(sum(tally), 'out of', len(X), 'Accuracy:', '{0:.2f}'.format(x))
 
-# CHALLENGE - ...and train them on our data
-#clf = clf.fit(X, Y)
 
-#prediction = clf.predict([[190, 70, 43]])
-
-# CHALLENGE compare their results and print the best one!
-
-#print(prediction)
