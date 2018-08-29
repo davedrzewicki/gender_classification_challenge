@@ -29,7 +29,7 @@ Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
      'female', 'male', 'male']
 
 
-array = []
+array = dict()
 
 for i in range(0, len(names)): # loops through the classifiers that I've chosen
     clf = classifiers[i]
@@ -53,18 +53,10 @@ for i in range(0, len(names)): # loops through the classifiers that I've chosen
 
 
     x = sum(tally)/len(X) # this gives an accuracy
-    array.append([names[i], '{0:.2f}'.format(x)])
+    array[names[i]] = '{0:.2f}'.format(x)
+    
 
-print(array) # prints method and corresponding accuracy. Closer to 1 the better
+max_value = max(array.values())  # maximum value
+max_keys = [k for k, v in array.items() if v == max_value] # getting all keys containing the `maximum`
 
-mx = max([float(row[1]) for row in array])
-
-value = []
-
-for i in range(0, len(array)):
-    row = array[i]
-    if float(row[1]) == mx:
-        value.append(row[0])
-
-
-print('best accuracy is', '{0:.2f}'.format(mx), 'which is obtained by', value)
+print('Max value is ', max_value, 'which is obtained from ', max_keys)
